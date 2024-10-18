@@ -36,3 +36,44 @@ class Student:
             return sum(self.values) / len(self.values)
         except ZeroDivisionError:
             return 0
+
+
+class Group:
+    """Group class"""
+
+    students: list[Student]
+    name: str
+
+    def __init__(self, name: str) -> None:
+        """Init group"""
+        self.name = name
+        self.students = []
+
+    def add_student(self, student: Student) -> None:
+        """Add student to group"""
+        self.students.append(student)
+
+    def del_student(self, student: Student) -> None:
+        """Del student from group"""
+        self.students.remove(student)
+
+    def best_student(self) -> Student:
+        """Find the best student by average score in the group"""
+        return max(self.students, key=lambda student: student.get_average())
+
+    def group_best_student(self: list["Group"]) -> "Group":
+        """Find the group with the best student among all groups"""
+        best_student = None
+        best_group = None
+
+        for group in self:
+            for student in group.students:
+                if best_student is None or student > best_student:
+                    best_student = student
+                    best_group = group
+
+        return best_group
+
+    def __str__(self) -> str:
+        """String representation of the group"""
+        return f"Group: {self.name}, Student: {', '.join(str(student) for student in self.students)}"
