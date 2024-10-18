@@ -77,3 +77,50 @@ class Group:
     def __str__(self) -> str:
         """String representation of the group"""
         return f"Group: {self.name}, Student: {', '.join(str(student) for student in self.students)}"
+
+
+student1 = Student("Peter", 20)
+student2 = Student("George", 21)
+student3 = Student("Anna", 19)
+student4 = Student("Katy", 22)
+student5 = Student("Ivan", 20)
+
+student1.add_value(5)
+student1.add_value(6)
+
+student2.add_value(3)
+student2.add_value(4)
+
+student3.add_value(5)
+student3.add_value(6)
+student3.add_value(7)
+
+student4.add_value(10)
+student4.add_value(11)
+
+student5.add_value(1)
+student5.add_value(2)
+
+students = [student1, student2, student3, student4, student5]
+the_best_student = max(students)
+print(f"Best student: {the_best_student}")
+
+group1 = Group("best")
+group2 = Group("worst")
+
+group1.add_student(student1)
+group1.add_student(student2)
+
+group2.add_student(student3)
+group2.add_student(student4)
+group2.add_student(student5)
+
+print(group1)
+print(group2)
+
+group2.del_student(student5)
+
+print(f"After delete {group2}")
+
+the_best_group = Group.group_best_student([group1, group2])
+print(f"Best group: {the_best_group}")
