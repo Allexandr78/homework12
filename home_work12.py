@@ -1,4 +1,4 @@
-"""Home work 12"""
+"""Homework 12"""
 
 
 class Student:
